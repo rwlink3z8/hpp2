@@ -1,3 +1,14 @@
+/* create database change username */
+CREATE DATABASE ccmo_housing_information
+    WITH 
+    OWNER = username
+    ENCODING = 'SQL_ASCII'
+    LC_COLLATE = 'C'
+    LC_CTYPE = 'C'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+
 /* create postgresql table for lat and long table */
 CREATE TABLE HOUSE_LL (
 	HOUSE_LL_ID serial PRIMARY KEY,
