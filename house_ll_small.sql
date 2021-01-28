@@ -35,3 +35,55 @@ INSERT INTO HOUSE_LL (HOUSE_LL_MAP_PIN, HOUSE_LL_LATITUDE, HOUSE_LL_LONGITUDE, H
 
 /* test to see they inserted correctly */
 SELECT * FROM HOUSE_LL
+     
+/* create mls table and insert first 2 rows to test */
+CREATE TABLE HOUSE_MLS_TABLE (
+    HOUSE_MLS_ID serial Primary Key,
+    STREET_ADDRESS TEXT(250) NOT NULL,
+    MLS_NUMBER bigint NOT NULL,
+    SALE_PRICE bigint NOT NULL,
+    CITY TEXT NOT NULL,
+    SUBDIVISION TEXT NOT NULL,
+    FLOOR_PLAN_DESCRIPT TEXT NOT NULL,
+    BEDROOMS INT,
+    FULL_BATHROOMS INT,
+    HALF_BATHROOMS INT,
+    YEAR_BUILT INT,
+    SQFT_MAIN INT,
+    SQFT_MAIN_SOURCE TEXT,
+    SQFT_BELOW INT,
+    SQFT_BELOW_SOURCE TEXT,
+    RAW_LOT_SIZE TEXT,
+    SCHOOL_DISTRICT TEXT,
+    FIREPLACE BOOLEAN,
+    FIREPLACE_DESCRIPT TEXT,
+    BASEMENT BOOLEAN,
+    BASEMENT_DESCRIPT TEXT,
+    GARAGE_PARKING BOOLEAN,
+    CONSTRUCTION TEXT,
+    ARCHITECTURE TEXT,
+    ROOF TEXT,
+    LOT_DESCRIPT TEXT,
+    FLOODPLAIN BOOLEAN,
+    INSIDE_CITY_LIMITS BOOLEAN,
+    STREET_MAINTENANCE TEXT,
+    CENTRAL_AIR BOOLEAN,
+    HEAT TEXT,
+    COOL TEXT,
+    WATER TEXT,
+    SEWER TEXT,
+    ZIP_CODE INT,
+    LOT_SIZE_CLEAN FLOAT ( 8 ),
+    created_on TIMESTAMP NOT NULL
+);
+
+INSERT INTO HOUSE_MLS_TABLE (STREET_ADDRESS,MLS_Number,SALE_PRICE,CITY,SUBDIVISION,FLOOR_PLAN_DESCRIPT,BEDROOMS,FULL_BATHROOMS,HALF_BATHROOMS,YEAR_BUILT,SQFT_MAIN,
+    SQFT_MAIN_SOURCE,SQFT_BELOW,SQFT_BELOW_SOURCE,RAW_LOT_SIZE,SCHOOL_DISTRICT,FIREPLACE,FIREPLACE_DESCRIPT,BASEMENT,BASEMENT_DESCRIPT,GARAGE_PARKING,CONSTRUCTION,
+    ARCHITECTURE,ROOF,LOT_DESCRIPT,FLOODPLAIN,INSIDE_CITY_LIMITS,STREET_MAINTENANCE,CENTRAL_AIR,HEAT,COOL,WATER,SEWER,ZIP_CODE,LOT_SIZE_CLEAN,created_on)
+    VALUES
+    ('210 Sitter Street',2178982,15000,'Pleasant Hill','Walkers & Sitlers','Ranch',4,2,0,1950,1848,'Public Record',0,'Public Record','12,155','Pleasant Hill','1','Living Room, Wood Burning','0','Block, Crawl Space','1','Frame','Traditional','Composition','City Limits, City Lot, Level, Treed','0','1','Pub Maint, Paved','1','Forced Air Gas','Central Electric, Window Unit(s)','City/Public','City/Public',64080,0.279040404,now()),
+    ('115 S Campbell Street',2198507,18500,'Pleasant Hill','Pacific Railroad Add','Ranch',2,2,0,1920,1397,'Public Record',0,'Public Record','10,500','Pleasant Hill','0','None','1','Crawl Space','0','Frame','Traditional','Composition','City Limits, City Lot, Treed','0','1','Pub Maint, Paved','0','Wall Furnace','None','City/Public','City/Public',64080,0.241046832,now())
+;
+
+/* test to see they inserted correctly */
+SELECT * FROM HOUSE_MLS_TABLE
