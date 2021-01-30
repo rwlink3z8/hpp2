@@ -9,4 +9,4 @@
 
 `getAddres.py` - this file gets the addresses from coordinates using pyautogui, something I realized was missing from one of my tables, necessary to link them
 
-`house_migration_ll.sql` migrates the lat long data into a postgresql database inside a docker container, will update with address, once I've confirmed that's correct
+`house_ll_migration.sql` migrates the lat long data into a postgresql database inside a docker container, will update with address, once I've confirmed that's correct
