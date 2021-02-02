@@ -1,7 +1,7 @@
 # hpp2
 
 ## TODO
-- migrating existing home price predictor data to a sql database backend
+- migrating existing home price predictor data to a sql database backend with python as my server side language, update JS functions to jquery where possible for smoother UI
 - rebuilding scraper to run from the command line and then update the sql database
 - Convert cleaning functions into a pipeline to clean up workflow
 - reinstall idle to make getAddress.py more reproducible
