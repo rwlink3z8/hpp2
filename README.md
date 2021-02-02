@@ -1,11 +1,11 @@
 # hpp2
 
 ## TODO
-- migrating existing home price predictor data to a psql database for the two tables, with python as the server side language, update JS to jquery for a more seamless UI
+- migrating existing home price predictor data to a psql database for the two tables, with python as the server side language
 - rebuilding scraper to run from the command line and then update the sql database
 - Convert cleaning functions into a pipeline to clean up workflow
 - reinstall idle to make getAddress.py more reproducible
-- Updating Site
+- Updating client side scripts for better UI - for example replace JS with JQUERY
 
 
 `getAddres.py` - this file gets the addresses from coordinates using pyautogui, something I realized was missing from one of my tables, necessary to link them
