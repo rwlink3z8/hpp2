@@ -13,3 +13,5 @@
 `house_ll_migration.sql` migrates the lat long data into a postgresql database in an EC2, will update with address, once I've confirmed that's correct.
 As it was only one table I was lazy and used regex to quickly format it. 
 - Todo: write a file to handle new data with more automation
+
+`clean_lat_long.py` 
