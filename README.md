@@ -15,3 +15,8 @@ As it was only one table I was lazy and used regex to quickly format it.
 - Todo: write a file to handle new data with more automation
 
 `clean_lat_long.py` - this file takes the unformatted txt file, formats it for data analysis and saves it as a new csv file it can be run from the command line
+It will ask for 4 inputs
+1. path to the file of interest
+2. file name of interest
+3. path where you want the new file to be written
+4. file name of new file
