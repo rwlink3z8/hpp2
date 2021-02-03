@@ -2,7 +2,7 @@
 
 ## TODO
 - migrating existing home price predictor data to a psql database for the two tables, with python as the server side language
-- rebuilding scraper to run from the command line and then update the sql database
+- rebuilding scraper to run from the command line and then update the sql database - part 1 of this is complete
 - Convert cleaning functions into a pipeline to clean up workflow
 - reinstall idle to make getAddress.py more reproducible
 - Updating client side scripts for better UI - for example replace JS with JQUERY
