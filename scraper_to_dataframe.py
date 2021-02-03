@@ -7,8 +7,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support import expected_conditions
 from selenium.common import exceptions
 
-import numpy as np
-import pandas as pd
+import numpy as np 
+import pandas as pd 
 
 '''
 this is a webscraper for scraping the entirety of each MLS listing with selenium, webdriver wait sped the scraper up significantly as opposed to just setting a sleep timer
@@ -16,22 +16,23 @@ one weird behavior I have noticed is that it sometimes clicks and adds duplicate
 the scraper opens the MLS listing main page
 then it clicks the first listing and grabs the wrapper table from each listing and clicks on the next listing
 the data is then stored in a table of newline separated values
-the five functions are then run in succession to convert the table into a dataframe
-'''
+the four functions are then run in succession to convert the table into a dataframe
 url= "https://matrix.heartlandmls.com/Matrix/Public/Portal.aspx?L=1&k=990316X949Z&p=DE-77667588-490" 
+'''
 
-feature_list = ['MLS Number','County', 'City', 'Sub Div', 'Type',
-        'Floor Plan Description', 'Bdrms',
-       'Baths Full', 'Baths Half','Year Built', 'Sqft Main', 
-       'SQFT MAIN SOURCE', 'Below Grade Finished Sq Ft',
-       'Below Grade Finished Sq Ft Source', 'Lot Size', 'School District',
-       'Fireplace?', 'Fireplace Description',
-       'Basement', 'Basement Description',
-       'Garage/Parking?', 'Construction', 
-       'Architecture', 'Roof',  'Lot Description',
-      'In Floodplain', 'Inside City Limits', 
-       'Street Maintenance','Central Air', 'Heat', 
-       'Cool', 'Water','Sewer']
+
+feature_list = ['MLS #','County', 'City', 'Sub', 'Type',
+        'Floor Plan', 'Bedrooms',
+       'Full Baths', 'Half Baths','Yr Blt', 'Above Grade Finished SF', 
+       'Above Grade Finished Source', 'Below Grade Finished SF',
+       'Below Grade Finished Source', 'Lot Size', 'District',
+       'Fr Pl', 'Fireplace',
+       'Bsmnt?', 'Bsmnt',
+       'Garage#', 'Construct', 
+       'Style', 'Roof',  'Lot Desc',
+      'Floodpl', 'City Limits', 
+       'Cent Air', 'Heating', 
+       'Cooling', 'Water','Sewer', 'Warranty']
 
 def scrape_MLS(url):
                                                                          
@@ -43,7 +44,7 @@ def scrape_MLS(url):
     time.sleep(5)
     # 500 total listings on this site but the scraper has some behavior i can't explain
     while True:
-        if len(raw_house_table)>=570:
+        if len(raw_house_table)>=600:
             print('done')
             break
         else:
@@ -71,22 +72,17 @@ def convert_to_arrays(lst):
 
 def convert_to_key_values(arr, feature_list):
     '''
-     I can see now that I did not use the list new as planned
      try and except is used because not all the listings will have all of the
      keys i need
     '''
     new = []
-
     for val in feature_list:
         try:
-            # y finds the index of the next value which is what is wanted
-            # z builds the array getting the value
-            # z1 returns only that value, maybe a cleaner way to do this?
             y = (np.argwhere(arr==val)+1).flatten()
             z = np.where(arr==val, arr[y], None)
             z1 = z[z!=None][0]
             new.append(z1)
-        except:
+        except ValueError as err:
             new.append(None)
     return dict(zip(feature_list, new))
 
@@ -98,4 +94,9 @@ def apply_kv_to_list(arr_lst):
 
 def kv_list_to_df(lst):
     data = pd.DataFrame(lst)
-    return data
+    data.to_csv('20210203test.csv')
+
+
+print("enter the url to scrape")
+url = input()
+kv_list_to_df(apply_kv_to_list(convert_to_arrays(split_newline_table(scrape_MLS(url)))))
