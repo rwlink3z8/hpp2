@@ -7,6 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support import expected_conditions
 from selenium.common import exceptions
 
+import numpy as np
+import pandas as pd
+
 '''
 this is a webscraper for scraping the entirety of each MLS listing with selenium, webdriver wait sped the scraper up significantly as opposed to just setting a sleep timer
 one weird behavior I have noticed is that it sometimes clicks and adds duplicates, so I had it go an extra 10-15% of all entries to account for that
