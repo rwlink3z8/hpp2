@@ -16,7 +16,7 @@ one weird behavior I have noticed is that it sometimes clicks and adds duplicate
 the scraper opens the MLS listing main page
 then it clicks the first listing and grabs the wrapper table from each listing and clicks on the next listing
 the data is then stored in a table of newline separated values
-the four functions are then run in succession to convert the table into a dataframe
+the five functions are then run in succession to convert the table into a dataframe
 '''
 url= "https://matrix.heartlandmls.com/Matrix/Public/Portal.aspx?L=1&k=990316X949Z&p=DE-77667588-490" 
 
@@ -90,8 +90,12 @@ def convert_to_key_values(arr, feature_list):
             new.append(None)
     return dict(zip(feature_list, new))
 
-def apply_kv_to_list(lst1, arr_lst):
+def apply_kv_to_list(arr_lst):
     new_list = []
     for i in range(len(arr_lst)):
         new_list.append(convert_to_key_values(arr_lst[i], feature_list))
     return new_list
+
+def kv_list_to_df(lst):
+    data = pd.DataFrame(lst)
+    return data
