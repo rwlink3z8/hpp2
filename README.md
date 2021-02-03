@@ -21,4 +21,4 @@ It will ask for 4 inputs
 3. path where you want the new file to be written
 4. file name of new file
 
-`scraper_to_dataframe.py` runs from the command line, would need the MLS listing to make this work for yourself, it will ask you to input the URL and then it will output the data into a CSV - each MLS search is limited to 500 listings
+`scraper_to_dataframe.py` runs from the command line, would need the MLS listings for this to work, could also adapt for any newline characater separated list, it will ask you to input the URL and then it will output the data into a CSV.
