@@ -7,6 +7,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support import expected_conditions
 from selenium.common import exceptions
 
+from sqlalchemy import create_engine
+import psycopg2
+
+import secrets
+
 import numpy as np 
 import pandas as pd 
 
@@ -92,11 +97,15 @@ def apply_kv_to_list(arr_lst):
         new_list.append(convert_to_key_values(arr_lst[i], feature_list))
     return new_list
 
-def kv_list_to_df(lst):
+def kv_list_to_df_to_csv_psql(lst):
     data = pd.DataFrame(lst)
+    data = data.drop_duplicates()
+    engine = db.create_engine('postgres+psycopg2://{my_username}:{my_password}@localhost:5432/ccmo_housing_information'.format(secrets.my_username, secrets.my_password))
+    data.to_sql('raw_housing_table', engine)
     data.to_csv('20210203test.csv')
 
 
 print("enter the url to scrape")
 url = input()
-kv_list_to_df(apply_kv_to_list(convert_to_arrays(split_newline_table(scrape_MLS(url)))))
+kv_list_to_df_to_csv_psql(apply_kv_to_list(convert_to_arrays(split_newline_table(scrape_MLS(url)))))
+
