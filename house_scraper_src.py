@@ -74,17 +74,22 @@ def convert_to_arrays(lst):
     np_arrays = [np.array(arr) for arr in lst]
     return np_arrays
 
-def get_addreses_from_list(lst):
+def get_addresses_from_list(lst):
+    '''
+    this function gets the address columns with zip code and prices from the table of arrays created by the previous function
+    '''
     column1 = [row[0] for row in lst]
     column2 = [row[1] for row in lst]
+    column3 = [row[4] for row in lst]
 
     temp_df = pd.DataFrame(
         {'add1': column1,
-        'add2': column2})
+        'add2': column2,
+        'price':column3})
     temp_df = temp_df.drop_duplicates()
     temp_df['address'] = temp_df['add1'] +' '+ temp_df['add2']
-    temp_df = temp_df[['address']]
-    return temp_df    
+    temp_df = temp_df[['address', 'price']]
+    return temp_df  
 
 
 def convert_to_key_values(arr, feature_list):
