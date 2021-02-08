@@ -38,7 +38,12 @@ feature_list = ['MLS #','County', 'City', 'Sub', 'Type',
        'Cooling', 'Water','Sewer', 'Warranty']
 
 def scrape_MLS(url):
-                                                                         
+    '''
+    instantiate an empty table, list of ignored exceptions for webdriverwait
+    the xpath is found by the address, which is clickable
+    the webdriverwait has some behavior where it gets duplicates - casting to a set did not work, it's still faster than setting an explicit sleep timer
+    try and except handles the exceptions, and it returns the table
+    '''
     raw_house_table = []
     ignored_exceptions = [exceptions.NoSuchElementException, exceptions.StaleElementReferenceException, exceptions.WebDriverException]
     driver = webdriver.Firefox()
@@ -93,7 +98,8 @@ def get_addresses_from_list(lst):
 
 def convert_to_key_values(arr, feature_list):
     '''
-     try and except is used because not all the listings will have all of the
+    helper function
+    try and except is used because not all the listings will have all of the
      keys i need
     '''
     new = []
@@ -108,32 +114,40 @@ def convert_to_key_values(arr, feature_list):
     return dict(zip(feature_list, new))
 
 def apply_kv_to_list(arr_lst):
+        '''
+        uses convert_to_key_values to get the data as a list of key value pairs
+        '''
     new_list = []
     for i in range(len(arr_lst)):
         new_list.append(convert_to_key_values(arr_lst[i], feature_list))
     return new_list
 
-# def kv_list_to_df_to_csv_psql(lst):
-#    data = pd.DataFrame(lst)
-#    data = data.drop_duplicates()
-#    engine = db.create_engine('postgres+psycopg2://{my_username}:{my_password}@localhost:5432/ccmo_housing_information'.format(secrets.my_username, secrets.my_password))
-#    data.to_sql('raw_housing_table', engine)
-#    data.to_csv('20210203test.csv')
 
 def kv_list_to_df(lst):
+        '''
+        convert the list of key value pairs to a dataframe
+        '''
+        
     data = pd.DataFrame(lst)
     data = data.drop_duplicates()
     return data    
 
 def zip_up_data(data, data1):
+        '''
+        add addresses back to the dataframe - this changed when the mls website changed so I had to add this
+        '''
     address = data1['address']
     data = pd.concat([data, address], axis=1)
     return data
 
 
 def df_to_storage(data):
+        '''
+        store the data in the postgresql database and to a csv
+        '''
     engine = db.create_engine('postgres+psycopg2://username:password@localhost:5432/ccmo_housing_information')
     conn = engine.connect()
     data.to_sql('raw_housing_table', conn, if_exists='append')
+    conn.auttocommit = True
     conn.close()
     data.to_csv('20210203test.csv')
