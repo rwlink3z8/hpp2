@@ -9,7 +9,6 @@ from selenium.common import exceptions
 
 from sqlalchemy import create_engine
 
-import secrets as secrets
 
 import numpy as np 
 import pandas as pd 
@@ -133,6 +132,8 @@ def zip_up_data(data, data1):
 
 
 def df_to_storage(data):
-    engine = db.create_engine('postgres+psycopg2://{my_username}:{my_password}@localhost:5432/ccmo_housing_information'.format(secrets.my_username, secrets.my_password))
-    data.to_sql('raw_housing_table', engine)
+    engine = db.create_engine('postgres+psycopg2://username:password@localhost:5432/ccmo_housing_information')
+    conn = engine.connect()
+    data.to_sql('raw_housing_table', conn, if_exists='append')
+    conn.close()
     data.to_csv('20210203test.csv')
