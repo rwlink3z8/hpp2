@@ -1,6 +1,6 @@
 raw_housing_table_string =("""
 CREATE TABLE raw_house_mls_table (
-	HOUSE_MLS_ID serial Primary Key,
+    HOUSE_MLS_ID serial Primary Key,
     street_address text(250) NOT NULL,
     sale_price bigint NOT NULL,
     mls_number bigint NOT NULL,
@@ -44,10 +44,10 @@ CREATE TABLE HOUSE_LL (
 	HOUSE_LL_ID serial PRIMARY KEY,
 	HOUSE_LL_MAP_PIN VARCHAR ( 12 ) UNIQUE NOT NULL,
 	HOUSE_LL_LATITUDE FLOAT ( 8 ) NOT NULL,
-    HOUSE_LL_LONGITUDE FLOAT ( 8 ) NOT NULL,
-    HOUSE_LL_SALE_PRICE bigint NOT NULL,
-    HOUSE_LL_BEDROOMS int NOT NULL,
-    HOUSE_LL_BATHROOMS float ( 2 ) NOT NULL
+    	HOUSE_LL_LONGITUDE FLOAT ( 8 ) NOT NULL,
+    	HOUSE_LL_SALE_PRICE bigint NOT NULL,
+    	HOUSE_LL_BEDROOMS int NOT NULL,
+    	HOUSE_LL_BATHROOMS float ( 2 ) NOT NULL
 );
 """)
 
