@@ -10,11 +10,11 @@
 ## Data Collection and initial storage
 First create the database in the docker container
 
-`sudo docker run -p 5432:5432 -d \
--e POSTGRES_PASSWORD=password \
--e POSTGRES_USER=username \
--e POSTGRES_DB=ccmo_housing_information \
--v pgdata:/var/lib/postgresql/dasudota \
+`sudo docker run -p 5432:5432 -d 
+-e POSTGRES_PASSWORD=password 
+-e POSTGRES_USER=username 
+-e POSTGRES_DB=ccmo_housing_information 
+-v pgdata:/var/lib/postgresql/dasudota 
 postgres`
 
 *My* explanation to the previous docker command
@@ -28,11 +28,11 @@ and this is the second time i struggled with persistent connections....they are 
 
 So after killing the process I ran this docker command again
 
-`sudo docker run -p 5432:5432 -d \
--e POSTGRES_PASSWORD=password \
--e POSTGRES_USER=username \
--e POSTGRES_DB=ccmo_housing_information \
--v pgdata:/var/lib/postgresql/dasudota \
+`sudo docker run -p 5432:5432 -d 
+-e POSTGRES_PASSWORD=password 
+-e POSTGRES_USER=username 
+-e POSTGRES_DB=ccmo_housing_information 
+-v pgdata:/var/lib/postgresql/dasudota 
 postgres`
 
 After  creating the postgresql server the raw data can be scraped and stored into a psql database with the following two files by running `house_scraper.py` from the command line assuming the `house_scraper_src.py` is in the same directory - this can be easily modified where it takes no url input.
