@@ -3,7 +3,7 @@
 #### second house finished January 2021, close in early March! visualizations to follow
 
 
-![Process](https://github.com/rwlink3z8/hpp2/blob/master/img/Screenshot20210211.jpg)
+![Screenshot20210211](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot20210211.jpg)
 
 ## Table of Contents
 1. Data collection and initial storage
