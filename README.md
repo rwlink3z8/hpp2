@@ -1,6 +1,6 @@
 # Home Price Predictor 2
 
-#### second house finished January 2021, close in early March!
+#### second house finished January 2021, close in early March! visualizations to follow
 
 ## Table of Contents
 1. Data collection and initial storage
@@ -64,4 +64,6 @@ This first
 ### Data Visualization
 - have fun and frustration with this
 ### User interface
+- look at django vs flask for better sql integration
 - Updating client side scripts for better UI - for example replace JS with JQUERY
+- look at agent descriptions for buzzwords for NLP
