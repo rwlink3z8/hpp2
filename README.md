@@ -57,8 +57,8 @@ It will ask for 4 inputs
 2. file name of interest
 3. path where you want the new file to be written
 4. file name of new file
-## todo here
-  finish migrating this to the psql server as well
+## todo 
+ - finish migrating this to the psql server as well
 
 
 `house_ll_migration.sql` migrates the lat long data into a postgresql database in a docker container, will update with address, once I've confirmed that's correct. - or reverse the order of that program, and then use `sql_queries.py` to populate the database.
