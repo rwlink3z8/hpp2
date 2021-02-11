@@ -147,7 +147,7 @@ def df_to_storage(data):
         '''
     engine = db.create_engine('postgres+psycopg2://username:password@localhost:5432/ccmo_housing_information')
     conn = engine.connect()
-    data.to_sql('raw_housing_table', schema='schema', conn, if_exists='append')
+    data.to_sql('raw_housing_table', conn, if_exists='append')
     conn.auttocommit = True
     conn.close()
     data.to_csv('20210203test.csv')
