@@ -3,12 +3,18 @@
 #### second house finished January 2021, close in early March! visualizations to follow
 
 
-![Screenshot20210211](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot20210211.jpg)
+
 
 ## Table of Contents
-1. Data collection and initial storage
-2. Data transformation, modeling and storage
-3. Client side work to present models in a readable, practical way
+1. Current and Future Architechture
+2. Data collection and initial storage
+3. Data transformation, modeling and storage
+4. Client side work to present models in a readable, practical way
+
+
+## Architechture - migration to staging area database complete
+
+![Screenshot20210211](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot20210211.jpg)
 
 ## Data Collection and initial storage
 First create the database in the docker container
