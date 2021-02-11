@@ -14,7 +14,7 @@
 
 ## Architechture - migration to staging area database complete
 
-![Screenshot20210211](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot20210211.jpg)
+![Screenshot20210211](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot20210211_1.jpg)
 
 ## Data Collection and initial storage
 First create the database in the docker container
