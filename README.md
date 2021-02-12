@@ -26,24 +26,6 @@ First create the database in the docker container
 -v pgdata:/var/lib/postgresql/dasudota 
 postgres`
 
-*My* explanation to the previous docker command
-5432 is the default port postgres runs on, -d so it runs persistenly in the background, it's a server after all, not a static file, the three -e variables are environment variables for the password, username, and database name, -v persists the container (ask me how persisting took me two days to figure out with bash... the perils of self teaching), /var/lib/postresql/data is the path inside the container
-
-#### I digress..... i would ask this on SO but my heart cannot handle a downvote today
-First time I ever tried this it threw an error that the port was already listening, or something like that? fixed it with the following bash command
-
-`sudo ss -lptn 'sport =:5432` this worked the first time but not after subsequent times, I actually had to go into the conf file and to kill the port, the next time it happened. the time it happened after that I had to run `ps aux | grep postgres` and then run `sudo kill -QUIT <pid>`
-and this is the second time i struggled with persistent connections....they are not static files.... but someone please tell me how to persist the server after closing the terminal? is there a `&&` command I am missing?
-
-So after killing the process I ran this docker command again
-
-`sudo docker run -p 5432:5432 -d 
--e POSTGRES_PASSWORD=password 
--e POSTGRES_USER=username 
--e POSTGRES_DB=ccmo_housing_information 
--v pgdata:/var/lib/postgresql/dasudota 
-postgres`
-
 After  creating the postgresql server the raw data can be scraped and stored into a psql database with the following two files by running `house_scraper.py` from the command line assuming the `house_scraper_src.py` is in the same directory - this can be easily modified where it takes no url input.
 
 `getAddres.py` - this file gets the addresses from coordinates using pyautogui, something I realized was missing from one of my tables, necessary to link them
