@@ -72,6 +72,11 @@ def convert_categorical_cols(data):
         print("check your function for errors - column names probably")
     return data
 
+def create_dummy_columns(data1):
+    # dummy columns for categorical features
+    data1 = pd.get_dummies(data=data1, columns=['City', 'District'], dtype='int64')
+    return data1
+
 
 def send_to_csv(data):
     data.to_csv('20200215_mls_clean.csv')
