@@ -49,7 +49,9 @@ It will ask for 4 inputs
 
 
 ### Data transformation, modeling and storage
-- Convert cleaning functions into a pipeline to clean up workflow
+
+`20210215_house_cleaning_pipeline.py` and `data_cleaning_src.py` clean the data to prepare it for modelling and can be run from the command line by running the 20210215_house_cleaning_pipeline.py file
+
 - have fun with data analysis, modeling, and visualization
 
 ### Client side work to present models in a readable, practical way
