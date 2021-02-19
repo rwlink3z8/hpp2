@@ -30,7 +30,7 @@ After  creating the postgresql server the raw data can be scraped and stored int
 
 `getAddres.py` - this file gets the addresses from coordinates using pyautogui, something I realized was missing from one of my tables, necessary to link them
 ##todo
-This is going to be easily reverse engineered, since i have the addresses, I can make a few small changes to that workflow to get lat and long coordinates that are useful later on for folium visualizations.
+replace with geopy and geopandas
 
 After getting the address with the coordinates
 `clean_lat_long.py` - this file takes the unformatted txt file, formats it for data analysis and saves it as a new csv file it can be run from the command line
