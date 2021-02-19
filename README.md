@@ -50,7 +50,7 @@ It will ask for 4 inputs
 
 ### Data transformation, modeling and storage
 
-`20210215_house_cleaning_pipeline.py` and `data_cleaning_src.py` clean the data to prepare it for modelling and can be run from the command line by running the 20210215_house_cleaning_pipeline.py file
+`20210215_house_cleaning_pipeline.py` and `data_cleaning_src.py` clean the data to prepare it for modelling and can be run from the command line by running the 20210215_house_cleaning_pipeline.py file. At this point the data is ready for exploratory data analysis
 
 - have fun with data analysis, modeling, and visualization
 
