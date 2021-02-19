@@ -52,6 +52,8 @@ It will ask for 4 inputs
 
 `20210215_house_cleaning_pipeline.py` and `data_cleaning_src.py` clean the data to prepare it for modelling and can be run from the command line by running the 20210215_house_cleaning_pipeline.py file. At this point the data is ready for exploratory data analysis
 
+After EDA and PCA `ccmo_outlier_removal.py` is run to prepare the dataset for modelling and prediction, it uses the functions written in `ccmo_outlier_src20200219.py`
+
 - have fun with data analysis, modeling, and visualization
 
 ### Client side work to present models in a readable, practical way
