@@ -72,10 +72,13 @@ def convert_categorical_cols(data):
         print("check your function for errors - column names probably")
     return data
 
-def create_dummy_columns(data1):
-    # dummy columns for categorical features
-    data1 = pd.get_dummies(data=data1, columns=['City', 'District'], dtype='int64')
-    return data1
+def fix_lees_summit(data):
+    # Lees Summit is entered 2 ways, correct this
+    data['District'] = data['District'].replace(to_replace="Lee's Summit", 
+                                                  value='Lees Summit')
+    data['City'] = data['City'].replace(to_replace="Lee's Summit", 
+                                                  value='Lees Summit')
+    return data
 
 
 def send_to_csv(data):
