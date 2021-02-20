@@ -1,8 +1,8 @@
 import pandas as pd 
 import numpy as np 
 
-# convert the combination floor plans into principal floor plans - this lowers the model accuracy
-# by .002% but simplifies it
+# convert the combination floor plans into principal floor plans this parameter tuning can have the largest impact on score
+# how you split these can change the accuracy score from a 75 all the way up to an 83%
 split_styles = ['Other, Side/Side Split',
     'Side/Side Split, Split Entry',
     'Front/Back Split, Split Entry',
@@ -15,18 +15,18 @@ split_styles = ['Other, Side/Side Split',
     'Side/Side Split, Tri Level', 'Other, Split Entry','Front/Back Split',
     'California Split','California Split, Front/Back Split', 'Tri Level',
     'Atrium Split, Side/Side Split', 'Split Entry, Tri Level']
+# one half stories also include larger earth contacts - a 2 story earth contact is really the mirror image of the reverse 1.5 story floor plan
 one_half_stories = [ '1.5 Stories, Ranch',
     '1.5 Stories, 2 Stories',
     '1.5 Stories, Side/Side Split',
     '1.5 Stories, Earth Contact',
-    'Raised 1.5 Story, Raised Ranch']
+    'Raised 1.5 Story, Raised Ranch', '2 Stories, Earth Contact', 'Earth Contact, Ranch' ]
 reverses = ['Ranch, Reverse 1.5 Story', '2 Stories, Reverse 1.5 Story']
 others = ['Other', 'Other, Ranch']
-ecothers = ['2 Stories, Earth Contact', 'Earth Contact, Ranch']
 raised_fp = ['Raised Ranch, Split Entry','Raised Ranch, Ranch']
 
 def pca_floor_plans(data):
-
+    # more time can be spent fine tuning this, model score actually went up from an 82.7% to an 83.6% with this component analysis
     data['Floor_Plan'] = data['Floor_Plan'].replace(to_replace=split_styles, value='Split Entry')
     data['Floor_Plan'] = data['Floor_Plan'].replace(to_replace=one_half_stories, value='1.5 Stories')
     data['Floor_Plan'] = data['Floor_Plan'].replace(to_replace=raised_fp, value='Raised Ranch')
@@ -36,8 +36,6 @@ def pca_floor_plans(data):
                                                 value='Reverse 1.5 Story')
     data['Floor_Plan'] = data['Floor_Plan'].replace(to_replace=others, 
                                                 value='Ranch')
-    data['Floor_Plan'] = data['Floor_Plan'].replace(to_replace=ecothers, 
-                                                value='Earth Contact')
     return data
 
 def outlier_removal(data):
