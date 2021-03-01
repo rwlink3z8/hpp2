@@ -1,7 +1,7 @@
 # Home Price Predictor 2
 
 #### second house finished January 2021, close in early March! visualizations to follow
-
+currently looking for another real estate API as zillow has removed the api on 2/26/21
 
 
 
