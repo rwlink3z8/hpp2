@@ -1,7 +1,8 @@
 # Home Price Predictor 2
 
 #### second house finished January 2021, close in early March! visualizations to follow
-currently looking for another real estate API as zillow has removed the api on 2/26/21
+
+Making the switch from webscraping to API's has allowed me to obtain real estate listings for over 277,000 single-family homes sold in the KC metro area over the last 20 years for three different counties. This represents a 100 fold increase in the data and current work is to continue to scale this project
 
 
 
