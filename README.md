@@ -6,7 +6,7 @@ Making the switch from webscraping to API's has allowed me to obtain real estate
 
 The raw data for cass county is in the data folder in 3 chunks, it's the smallest of the 3 counties by an order of 5 
 
-
+All of the raw data is currently stored in a postgreSQL database, I am working now to clean the data and zero in on the queries for ease of use
 
 ## Table of Contents
 1. Current and Future Architechture
