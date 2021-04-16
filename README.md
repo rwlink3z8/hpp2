@@ -26,8 +26,14 @@ All of the raw data is currently stored in a postgreSQL database, an example of 
 
 `getLatLong.py` - this file gets the lat and long coordinates from the address using geopy, geopandas and googles API which can be obtained from the GCP
 
-House prices over time
-![prices_over_time](https://github.com/rwlink3z8/hpp2/blob/main/img/ccmo_home_prices1.png)
+###House prices over time
+![prices_over_time](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot%202021-04-16%20152909.jpg)
+
+Because of the long period of time (20 years) house prices had to be normalized, the code for this is in the function `transform_target_func` in the `data_pipeline_src.py` file, the mean for 2021 was divided by the yearly mean sales price and this index was then multiplied by the sales price to normalize prices, the house prices have a skew greater than 4, so a boxcox transformation was done to deal with skew, the following figure shows the sale price distribution before and after the transformation. YeoJohnson transformations were also done to deal with severely skewed features.
+
+### House price distribution before and after transformation
+
+![price_dist](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot%202021-04-16%20154327.jpg)
 
 After getting the address with the coordinates
 `clean_lat_long.py` - this file takes the unformatted txt file, formats it for data analysis and saves it as a new csv file it can be run from the command line
