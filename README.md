@@ -2,22 +2,24 @@
 
 #### second house finished January 2021, close in early March! visualizations to follow
 
-Making the switch from webscraping to API's has allowed me to obtain real estate listings for over 308,000 single-family homes sold in the KC metro area over the last 20 years for three different counties. This represents a 100 fold increase in the data and current work is to continue to scale this project.
 
-The raw data for cass county is in the data folder in 3 chunks, it's the smallest of the 3 counties by an order of 5 
-
-All of the raw data is currently stored in a postgreSQL database, I am working now to clean the data and zero in on the queries for ease of use
 
 ## Table of Contents
 1. Current and Future Architechture
 2. Data collection and initial storage
-3. TODO - Data transformation, modeling and storage
+3. Data transformation, modeling and storage
 4. TODO - Client side work to present models in a readable, practical way
 
 
 ## Current and Future Architechture - migration to staging area database complete
 
 ![Screenshot20210211](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot20210211_1.jpg)
+
+Making the switch from webscraping to API's has allowed me to obtain real estate listings for over 308,000 single-family homes sold in the KC metro area over the last 20 years for three different counties. This represents a 100 fold increase in the data and current work is to continue to scale this project.
+
+The raw data for the smallest county is in the data folder in 3 chunks, that accounts for approximately 10% of the total data
+
+All of the raw data is currently stored in a postgreSQL database, from there data is pulled in for cleaning and modeling with pandas.
 
 ## Data Collection and initial storage
 First create the database in the docker container
