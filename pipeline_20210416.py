@@ -5,7 +5,7 @@ import psycopg2 as pg2
 from config1 import *
 from data_pipeline_src import *
 conn = pg2.connect(user=username, dbname=database, host=awshost, port=port, password=passw)
-df = pd.read_sql("""SELECT * FROM kchouses1""", conn)
+df = pd.read_sql("""SELECT * FROM kchouses1 where kchouses1.county like(Cass)""", conn)
 conn.close()
 
 df1 = (dft.pipe(get_columns_of_interest)
