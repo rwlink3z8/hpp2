@@ -22,16 +22,9 @@ The raw data for the smallest county is in the data folder in 3 chunks, that acc
 All of the raw data is currently stored in a postgreSQL database, from there data is pulled in for cleaning and modeling with pandas.
 
 ## Data Collection and initial storage
-First create the database in the docker container
+The data was obtained with permission from the multiple listing system, from there it is stored in a postgresql database on an AWS RDS
 
-`sudo docker run -p 5432:5432 -d 
--e POSTGRES_PASSWORD=password 
--e POSTGRES_USER=username 
--e POSTGRES_DB=ccmo_housing_information 
--v pgdata:/var/lib/postgresql/dasudota 
-postgres`
-
-After  creating the postgresql server the raw data can be scraped and stored into a psql database with the following two files by running `house_scraper.py` from the command line assuming the `house_scraper_src.py` is in the same directory - this can be easily modified where it takes no url input.
+The data is read in, cleaned
 
 `getLatLong.py` - this file gets the lat and long coordinates from the address using geopy, geopandas and googles API which can be obtained from the GCP
 
