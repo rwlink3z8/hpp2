@@ -233,6 +233,13 @@ def fix_arc_style(data):
     data['Style'] = data['Style'].map(arc_style_dict).fillna('Other')
     return data
 
+def fix_lees_summit(data):
+    # Lees Summit is entered 2 ways, correct this
+    data['District'] = data['District'].replace(to_replace="Lee's Summit", 
+                                                  value='Lees Summit')
+    data['City'] = data['City'].replace(to_replace="Lee's Summit", 
+                                                  value='Lees Summit')
+    return data
       
 def transform_city1(data, col='City'):
     '''
