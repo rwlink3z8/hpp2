@@ -337,3 +337,13 @@ def lot_transformation_function(data):
     data.loc[data['Lot Size']<40, 'lot_size1'] = data['Lot Size']
     data.loc[data['Lot Size']>1500, 'lot_size1'] = data['Lot Size']/43560
     return data
+
+def rename_columns(data):
+    data = data.rename(columns={'Bedrooms':'bedrooms', 'Full Baths':'bathrooms',
+                               'Half Baths':'half_bath', 'Total Finished SF':'total_sqft',
+                               'Yr Blt':'yr_built', 'Fr Pl':'has_fireplace', 'Bsmnt?':'has_basement',
+                               'Cent Air':'central_air','Gar':'has_garage',
+                               'Floor Plan':'floor_plan', 'Style':'style','Garage #':'garage_size',
+                               'Fireplace #':'num_of_fireplaces','District':'district','Pool':'pool',
+                               'Construct':'construction','Roof':'roof'})
+    return data
