@@ -22,7 +22,7 @@ Making the switch from webscraping to API's has allowed me to obtain real estate
 The raw data for the smallest county is in the data folder in 3 chunks, that accounts for approximately 10% of the total data
 
 All of the raw data is currently stored in a postgreSQL database, an example of pulling the data from the server and the transformation pipeline are in
-`pipeline_20210416.py` this uses the functions from `data_pipeline_src.py` 
+`pipeline_model20210416.py` this uses the functions from `data_pipeline_src.py` It also shows the stacked regressor that had an accuracy of 85.8%, however this is not a marked improvement over a gradient boosting regressor with an accuracy score of 85.7%.. still need to look at the predict price for both to determine which to use for production.
 
 `getLatLong.py` - this file gets the lat and long coordinates from the address using geopy, geopandas and googles API which can be obtained from the GCP
 
@@ -30,7 +30,7 @@ All of the raw data is currently stored in a postgreSQL database, an example of 
 
 ![prices_over_time](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot%202021-04-16%20152909.jpg)
 
-Because of the long period of time (20 years) house prices had to be normalized, the code for this is in the function `transform_target_func` in the `data_pipeline_src.py` file, the mean for 2021 was divided by the yearly mean sales price and this index was then multiplied by the sales price to normalize prices.
+Because of the long period of time (20 years) house prices had to be normalized, the code for this is in the function `transform_target_func` in the `data_pipeline_src.py` file, the mean for 2021 was divided by the yearly mean sales price and this index was then multiplied by the sales price to normalize prices. The Rothschild saying comes to mind looking at the price anomoly...in late 2001, can't help but think we'll see some mean reversion once the world gets back to normal.
 
 ### Normalized House Prices
 
