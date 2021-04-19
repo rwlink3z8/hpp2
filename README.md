@@ -28,19 +28,19 @@ All of the raw data is currently stored in a postgreSQL database, an example of 
 
 ### House prices over time
 
-![prices_over_time](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot%202021-04-16%20152909.jpg)
+![prices_over_time](https://github.com/rwlink3z8/hpp2/blob/main/img/prices1.jpg)
 
-Because of the long period of time (20 years) house prices had to be normalized, the code for this is in the function `transform_target_func` in the `data_pipeline_src.py` file, the mean for 2021 was divided by the yearly mean sales price and this index was then multiplied by the sales price to normalize prices. The Rothschild saying comes to mind looking at the price anomoly...in late 2001, can't help but think we'll see some mean reversion once the world gets back to normal.
+Because of the long period of time (20 years) house prices had to be normalized, the code for this is in the function `transform_target_func` in the `data_pipeline_src.py` file, the mean for 2021 was divided by the yearly mean sales price and this index was then multiplied by the sales price to normalize prices. 
 
-### Normalized House Prices
+### Adjusted House price Distribution
 
-![normalized_prices](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot%202021-04-16%20155013.jpg)
+![normalized_prices](https://github.com/rwlink3z8/hpp2/blob/main/img/price_dist1.jpg)
 
 the normalized house prices have a skew greater than 4, so a boxcox transformation was done to deal with skew, the following figure shows the sale price distribution before and after the transformation. YeoJohnson transformations were also done to deal with severely skewed features.
 
-### House price distribution before and after transformation
+### House price distribution after transformation
 
-![price_dist](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot%202021-04-16%20154327.jpg)
+![price_dist](https://github.com/rwlink3z8/hpp2/blob/main/img/price_dist2.jpg)
 
 After getting the address with the coordinates
 `clean_lat_long.py` - this file takes the unformatted txt file, formats it for data analysis and saves it as a new csv file it can be run from the command line
