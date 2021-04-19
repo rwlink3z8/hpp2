@@ -56,16 +56,6 @@ It will ask for 4 inputs
 `house_ll_migration.sql` migrates the lat long data into a postgresql database in a docker container, will update with address, once I've confirmed that's correct. - or reverse the order of that program, and then use `sql_queries.py` to populate the database.
 
 
-
-
-### Data transformation, modeling and storage
-
-`20210215_house_cleaning_pipeline.py` and `data_cleaning_src.py` clean the data to prepare it for modelling and can be run from the command line by running the 20210215_house_cleaning_pipeline.py file. At this point the data is ready for exploratory data analysis
-
-After EDA and PCA `ccmo_outlier_removal.py` is run to prepare the dataset for modelling and prediction, it uses the functions written in `ccmo_outlier_src20200219.py`
-
-- have fun with data analysis, modeling, and visualization
-
 ### Client side work to present models in a readable, practical way
 - look at django vs flask for better sql integration
 - Updating client side scripts for better UI - for example replace JS with JQUERY
