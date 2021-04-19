@@ -234,25 +234,32 @@ def fix_arc_style(data):
     return data
 
       
-def transform_city(data, col='City'):
+def transform_city1(data, col='City'):
+    '''
+    remove cities not in the county
+    '''
+    city_list = ['Garden City', 'Pleasant Hill', 'Strasburg', 'Archie', 'Belton',
+                    'Harrisonville', 'Raymore', 'Drexel', 'Cleveland', 'Peculiar',
+                    'East Lynne', 'Freeman', 'Creighton', 'Lake Winnebago',
+                    'Lees Summit', 'Other', 'Greenwood', 'Loch Lloyd']
+    data = data[data[col].isin(city_list)]
+    data = data.reset_index(drop=True)
+    return data
+
+def transform_city2(data, col='City'):
     '''
     there are some very small towns and I tried to lump them with the school district they belong to after 
     removing the citys that were incorrect
     '''
-    city_list = ['Garden City', 'Pleasant Hill', 'Strasburg', 'Archie', 'Adrian', 'Belton',
-                    'Harrisonville', 'Raymore', 'Drexel', 'Cleveland', 'Peculiar',
-                    'East Lynne', 'Freeman', 'Creighton', 'Lake Winnebago', 'Kingsville'
-                    "Lee's Summit", 'Other', 'Greenwood', 'Loch Lloyd', 'Gunn City']
-    data = data[data[col].isin(city_list)]
-    data = data.reset_index(drop=True)
     city_dict = {'Gunn City':'East Lynne', 'Holden':'East Lynne', 'Adrian':'Archie', 'Kingsville':'Strasburg',
                 'Urich':'Creighton', 'Raymore':'Raymore','Belton':'Belton','Pleasant Hill':'Pleasant Hill',
-                'Harrisonville':'Harrisonville','Peculiar':'Peculiar',"Lee's Summit":"Lee's Summit",
+                'Harrisonville':'Harrisonville','Peculiar':'Peculiar','Lees Summit':'Lees Summit',
                 'Garden City':'Garden City','Archie':'Archie','Cleveland':'Cleveland',
                 'Lake Winnebago':'Lake Winnebago','Drexel':'Drexel','Loch Lloyd':'Loch Lloyd',
                 'Freeman':'Freeman','Creighton':'Creighton','Greenwood':'Greenwood',
                 'East Lynne':'East Lynne','Strasburg':'Strasburg','Other':'Raymore'}
-    data[col] = data[col].map(city_dict).fillna('Other')
+    data['city'] = data[col].map(city_dict).dropna()
+    data = data.reset_index(drop=True)
     return data
 
 
