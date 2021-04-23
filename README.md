@@ -1,6 +1,6 @@
 # Home Price Predictor 2
 
-#### second house finished January 2021, close in early March! visualizations to follow
+#### second house finished January 2021, close in early March! 
 
 
 
@@ -9,11 +9,6 @@
 2. Data collection and initial storage
 3. Data transformation, modeling and storage
 4. TODO - Client side work to present models in a readable, practical way
-
-
-## Current and Future Architechture - migration to staging area database complete
-
-![Screenshot20210211](https://github.com/rwlink3z8/hpp2/blob/main/img/Screenshot20210211_1.jpg)
 
 
 ## Data Collection and initial storage
