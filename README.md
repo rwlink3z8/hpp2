@@ -21,11 +21,13 @@ All of the raw data is currently stored in a postgreSQL database, an example of 
 
 `getLatLong.py` - this file gets the lat and long coordinates from the address using geopy, geopandas and googles API which can be obtained from the GCP
 
-### House prices over time
+### House prices and Forecasting
 
 ![prices_over_time](https://github.com/rwlink3z8/hpp2/blob/main/img/prices1.jpg)
 
-Because of the long period of time (20 years) house prices had to be normalized, the code for this is in the function `transform_target_func` in the `data_pipeline_src.py` file, the mean for 2021 was divided by the yearly mean sales price and this index was then multiplied by the sales price to normalize prices. An Augmented Dickey Fuller test shows that this normalization is sufficient to make the price data stationary.
+![forecast](https://github.com/rwlink3z8/hpp2/blob/main/img/arima.png)
+
+Because of the long period of time (20 years) house prices had to be normalized, the code for this is in the function `transform_target_func` in the `data_pipeline_src.py` file, the mean for 2021 was divided by the yearly mean sales price and this index was then multiplied by the sales price to normalize prices. An Augmented Dickey Fuller test shows that this normalization is sufficient to make the price data stationary. Forecasting prices over time is difficult as shown by the ARIMA model.
 
 ### Adjusted House price Distribution
 
