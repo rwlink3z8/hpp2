@@ -25,7 +25,7 @@ All of the raw data is currently stored in a postgreSQL database, an example of 
 
 ![prices_over_time](https://github.com/rwlink3z8/hpp2/blob/main/img/prices1.jpg)
 
-Because of the long period of time (20 years) house prices had to be normalized, the code for this is in the function `transform_target_func` in the `data_pipeline_src.py` file, the mean for 2021 was divided by the yearly mean sales price and this index was then multiplied by the sales price to normalize prices. 
+Because of the long period of time (20 years) house prices had to be normalized, the code for this is in the function `transform_target_func` in the `data_pipeline_src.py` file, the mean for 2021 was divided by the yearly mean sales price and this index was then multiplied by the sales price to normalize prices. An Augmented Dickey Fuller test shows that this normalization is sufficient to make the price data stationary.
 
 ### Adjusted House price Distribution
 
