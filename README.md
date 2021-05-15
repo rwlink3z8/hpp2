@@ -1,6 +1,6 @@
 # Home Price Predictor 2
 
-#### second house finished January 2021, close in early March! 
+ 
 
 
 
@@ -8,7 +8,9 @@
 1. Current and Future Architechture
 2. Data collection and initial storage
 3. Data transformation, modeling and storage
-4. TODO - Client side work to present models in a readable, practical way
+4. ToDo - add building permits from county from weekly pdf's 
+5. ToDo - days on market in my dataset add to model
+6. TODO - Client side work to present models in a readable, practical way
 
 
 ## Data Collection and initial storage
