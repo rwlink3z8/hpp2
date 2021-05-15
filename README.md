@@ -12,6 +12,7 @@
 5. ToDo - days on market in my dataset add to model
 6. TODO - Client side work to present models in a readable, practical way
 
+## 4 and 5 are probably what's needed to actually make valid predictions
 
 ## Data Collection and initial storage
 Making the switch from webscraping to API's has allowed me to obtain real estate listings for over 308,000 single-family homes sold in the KC metro area over the last 20 years for three different counties. This represents a 100 fold increase in the data and current work is to continue to scale this project.
