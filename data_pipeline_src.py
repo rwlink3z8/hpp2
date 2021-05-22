@@ -3,6 +3,26 @@ import numpy as np
 from datetime import datetime
 from scipy.stats import boxcox, yeojohnson
 from scipy.special import boxcox1p
+import psycopg2 as pg2
+import sqlalchemy as db
+
+#aws credentials
+import aws_config as cred
+
+def extract_from_sql():
+    '''
+    Extract data from AWS RDS using the credentials supplied in the aws_config file
+    Parameters
+    ----------
+    Returns
+    ----------
+
+    '''
+    mydb = db.create_engine('postgres+psycopg2://'+ cred.user + ':' + cred.passw + '@' + cred.host + \
+                        ':' + str(cred.port) + '/' + cred.database , echo=False) 
+    data = pd.read_sql_table(name='kchouses1', mydb)
+    return data
+
 
 def get_columns_of_interest(data):
     '''
