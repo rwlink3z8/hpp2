@@ -14,11 +14,11 @@ from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import KFold, cross_val_score, train_test_split
 from sklearn.metrics import mean_squared_error  
 
-from config1 import *
+import aws_config as cred
 from data_pipeline_src import *
 
-
-conn = pg2.connect(user=username, dbname=database, host=awshost, port=port, password=passw)
+# connect to the database and read in the data from the first county
+conn = pg2.connect(user=cred.user, dbname=cred.database, host=cred.host, port=cred.port, password=cred.passw)
 df = pd.read_sql("""SELECT * FROM kchouses1 where kchouses1.county like(Cass)""", conn)
 conn.close()
 
