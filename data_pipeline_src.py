@@ -5,6 +5,17 @@ from scipy.stats import boxcox, yeojohnson
 from scipy.special import boxcox1p
 
 def get_columns_of_interest(data):
+    '''
+    this function drops the columns not of interest for this analysis
+    Parameters
+    ---------
+
+    Returns
+    ---------
+
+
+
+    '''
     data_columns = ['City', 'Zip', 'Type', 'Sub', 'Bedrooms', 'Full Baths', 'Half Baths',
                 'Lot Size', 'Total Finished SF', 'Above Grade Finished SF', 'Yr Blt', 
                 'Fr Pl', 'Bsmnt?', 'Cent Air','Gar','Floor Plan', 'Style', 'Construct', 'Roof', 'Garage #', 
@@ -15,12 +26,37 @@ def get_columns_of_interest(data):
     return data
 
 def drop_important_nulls(data):
+    '''
+    this function drops properties with null values for the square footage
+    some deals happen so fast the realtor never gets the listing service all the data
+
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''
     data = data.drop_duplicates()
     data = data.dropna(subset=['Total Finished SF'])
     data = data.reset_index(drop=True)
     return data
 
 def fix_pool(data):
+    '''
+    this function 
+
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''
     data['Pool'] = data['Pool'].fillna('No Pool')
     return data
 
@@ -96,6 +132,18 @@ construction_set = (('Board/Batten','Wood Siding'),('Brick Trim, Frame','Brick &
 
 
 def construction_types(data):
+    '''
+    this function 
+    
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''
     data['Construct'] = data['Construct'].map(dict(construction_set)).fillna('Other')
     return data
 
@@ -134,6 +182,18 @@ floor_plans=(('Other, Side/Side Split', 'Split Entry'), ('Side/Side Split, Split
 ('Raised Ranch', 'Raised Ranch'), ('Ranch', 'Ranch'), ('Split Entry', 'Split Entry'))
 
 def fix_floor_plans(data):
+    '''
+    this function 
+    
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''
     data['Floor Plan'] = data['Floor Plan'].map(dict(floor_plans)).fillna('Other')
     return data
 
@@ -146,21 +206,69 @@ roof_types=(('Composition,Other','Composition'),('Composition,Metal','Metal'),('
 ('Metal','Metal'),('Other','Other'),('Tile','Tile'),('WoodShingle','WoodShingle'))
 
 def fix_roof_types(data):
+    '''
+    this function 
+    
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''
     data['Roof'] = data['Roof'].map(dict(roof_types)).fillna('Other')
     return data
 
 def fix_hoa_fees(data):
+    '''
+    this function 
+    
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''
     data['HOA Fees'] = data['HOA Fees'].fillna(value=0)
     data['HOA Fees'] = data['HOA Fees'].apply(lambda x: int(x))
     return data
 
 def fix_hoa_frequency(data):
+    '''
+    this function 
+    
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''
     hoa_dict = {'None':0, 'Annually':1, 'Monthly':12, 'Quarterly':4, 'Semi-Annually':2}
     data['HOA Fee Frequency'] = data['HOA Fee Frequency'].fillna(value=0)
     data['HOA Fee Frequency'] = data['HOA Fee Frequency'].replace(to_replace=hoa_dict.keys(), value=hoa_dict.values())
     return data
 
 def hoa_cost(data):
+    '''
+    this function 
+    
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''
     data['hoa_cost'] = data['HOA Fees'] * data['HOA Fee Frequency']
     return data
 
@@ -177,11 +285,35 @@ arc_styles=(('A-Frame,CapeCod','A-Frame'),('A-Frame,Contemporary','A-Frame'),('A
 ('Traditional','Traditional'),('Tudor','Tudor'),('Victorian','Victorian'),('Other','Other'))
 
 def fix_arc_style(data):
+    '''
+    this function 
+    
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''
     data['Style'] = data['Style'].map(dict(arc_styles)).fillna('Other')
     return data
 
 def fix_lees_summit(data):
     # Lees Summit is entered 2 ways, correct this
+    '''
+    this function 
+    
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''    
     data['District'] = data['District'].replace(to_replace="Lee's Summit", 
                                                   value='Lees Summit')
     data['City'] = data['City'].replace(to_replace="Lee's Summit", 
@@ -189,6 +321,22 @@ def fix_lees_summit(data):
     return data
 
 def transform_city1(data, col='City'):
+    '''
+    transformation function
+    PCA using the elbow method as well as me looking at a map to determine important cities
+    and small towns that are close enough to other small towns
+    is it all small towns in a county of 100,000 people?
+    I assume so from 25 miles north in my 'ivory' tower
+    
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''
     city_list = ['Garden City', 'Pleasant Hill', 'Strasburg', 'Archie', 'Belton',
                     'Harrisonville', 'Raymore', 'Drexel', 'Cleveland', 'Peculiar',
                     'East Lynne', 'Freeman', 'Creighton', 'Lake Winnebago',
@@ -209,6 +357,13 @@ def transform_city2(data, col='City'):
     '''
     there are some very small towns and I tried to lump them with the school district they belong to after 
     removing the citys that were incorrect
+    this function 
+    
+    Parameters
+    ---------
+    
+    Returns
+    ---------
     '''
     data['city'] = data[col].map(dict(city_set)).dropna()
     data = data.reset_index(drop=True)
@@ -221,13 +376,37 @@ schools=(('Raymore-Peculiar','Raymore-Peculiar'),('Belton','Belton'),('PleasantH
 ('Holden','EastLynne'),('Kingsville','Strasburg'),('Adrian','Archie'),('GunnCity','EastLynne'))
 
 def fix_district(data, col='District'):
+    '''
+    this function 
+    
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
+    '''
     data[col] = data[col].map(dict(schools)).fillna('Other')
     return data
 
 def fix_dates(data):
     '''
-    this function converts Close Dt to a datetime object then splits year and month from it
+    I start every doc string with this function..... I haven't thought through everything
+    there
+    but this defined set of not anonymous python instructions tells the fancy machine to convert 
+    Close Dt to a datetime object then splits year and month from it
+    Parameters
+    ---------
+    
+    Returns
+    ---------
+
+
+
     '''
+
     try:
         data['Close Dt'] = data['Close Dt'].apply(lambda x: datetime.strptime(x, "%m/%d/%Y"))
         data['year'] = pd.DatetimeIndex(data['Close Dt']).year 
@@ -240,6 +419,10 @@ def fix_dates(data):
     return data
 
 def fix_year(data, col='Yr Blt'):
+    '''
+    this is not a production level function I caught these on jupyter and I need to think 
+    of a better way to coerce...the years into being right...or close to right which they usually are
+    '''
     yr_dict={0.0:2000,196.0:1996,1194.0:1994,78.0:1978,76.0:1976,
             16.0:2016,204.0:2004,51.0:1951,19.0:2019,1654.0:1954,
             1080.0:1980,94.0:1994,4.0:2004,1004.0:2004,97.0:1997,
@@ -251,6 +434,21 @@ def fix_year(data, col='Yr Blt'):
 
 def transform_target_func(data, price_col='Sale Price'):
     '''
+    I spent a long time writing this and then from some time in the scipy library
+    and the stats models api I found there was literally an oo approach to this that was way simpler
+    Parameters
+    ----------
+    Data - a dataframe object
+    price_col - default column at the time of this writing is 'Sale Price' 
+
+
+    Returns
+    ----------
+    todo - merge these two returns
+    this function takes the yearly mean sales price and fits it to a yearly average
+    which needs to be swapped to a variable or an input for production code then it normalizes 
+    the price with a Box Cox transformation to fit the data to a normal distribution for cumulative distribution
+
     this function normalizes price to the current years mean price to adjust for inflation
     y_adjusted price = ((sale price)*(current year mean price)) / (sale year mean price)
     find lambda for box cox transformation and then apply boxcox tranformation with lambda
@@ -273,6 +471,16 @@ def transform_target_func(data, price_col='Sale Price'):
     return data
 
 def lot_transformation_function(data):
+    '''
+    this has to be county specific, Johnson county has over 6 times as many people and Jackson has 10
+    I decided on .2 because that is the average for a new build and neighborhood houses are way more likely 
+    not to enter the lot size than houses with land, but the data set was split there
+    the larger lots were listed in acres but often time the ones smaller than an acre were listed in square
+    feet
+    I do not know of a better way to do this and I am always open to advice
+
+
+    '''
     # fix lot size - remove outliers greater than 40 acres, larger than 1500 convert to acres
     data['Lot Size'] = data['Lot Size'].fillna(.2)
     data = data.loc[~data['Lot Size'].between(40,1500, inclusive=False)]
@@ -281,6 +489,10 @@ def lot_transformation_function(data):
     return data
 
 def rename_columns(data):
+    '''
+    this is just for clarity and I kind of like snake case it gives me flexibility down the road
+    readability now instead of sayingReadabilityNowIMeanIDon'tHaveClassesYet
+    '''
     data = data.rename(columns={'Bedrooms':'bedrooms', 'Full Baths':'bathrooms',
                                'Half Baths':'half_bath', 'Total Finished SF':'total_sqft',
                                'Yr Blt':'yr_built', 'Fr Pl':'has_fireplace', 'Bsmnt?':'has_basement',
@@ -289,3 +501,4 @@ def rename_columns(data):
                                'Fireplace #':'num_of_fireplaces','District':'district','Pool':'pool',
                                'Construct':'construction','Roof':'roof'})
     return data
+
