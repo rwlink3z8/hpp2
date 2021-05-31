@@ -365,12 +365,12 @@ def transform_city1(data, col='City'):
     data = data.reset_index(drop=True)
     return data
 
-city_set=(('GunnCity','EastLynne'),('Holden','EastLynne'),('Adrian','Archie'),
+city_set=(('Gunn City','East Lynne'),('Holden','East Lynne'),('Adrian','Archie'),
 ('Kingsville','Strasburg'),('Urich','Creighton'),('Raymore','Raymore'),('Belton','Belton'),
-('PleasantHill','PleasantHill'),('Harrisonville','Harrisonville'),('Peculiar','Peculiar'),
-('LeesSummit','LeesSummit'),('GardenCity','GardenCity'),('Archie','Archie'),('Cleveland','Cleveland'),
-('LakeWinnebago','LakeWinnebago'),('Drexel','Drexel'),('LochLloyd','LochLloyd'),('Freeman','Freeman'),
-('Creighton','Creighton'),('Greenwood','Greenwood'),('EastLynne','EastLynne'),
+('Pleasant Hill','Pleasant Hill'),('Harrisonville','Harrisonville'),('Peculiar','Peculiar'),
+('Lees Summit','Lees Summit'),('Garden City','Garden City'),('Archie','Archie'),('Cleveland','Cleveland'),
+('Lake Winnebago','Lake Winnebago'),('Drexel','Drexel'),('Loch Lloyd','Loch Lloyd'),('Freeman','Freeman'),
+('Creighton','Creighton'),('Greenwood','Greenwood'),('East Lynne','East Lynne'),
 ('Strasburg','Strasburg'),('Other','Raymore'))
 
 def transform_city2(data, col='City'):
@@ -389,11 +389,12 @@ def transform_city2(data, col='City'):
     data = data.reset_index(drop=True)
     return data
 
-schools=(('Raymore-Peculiar','Raymore-Peculiar'),('Belton','Belton'),('PleasantHill','PleasantHill'),
+schools=(('Raymore-Peculiar','Raymore-Peculiar'),('Belton','Belton'),('Pleasant Hill','Pleasant Hill'),
 ('Harrisonville','Harrisonville'),('Sherwood','Sherwood'),('Cass-Midway','Cass-Midway'),('Archie','Archie'),
-('LeesSummit','LeesSummit'),('Drexel','Drexel'),('EastLynne','EastLynne'),('Other','Other'),
+('Lees Summit','Lees Summit'),('Drexel','Drexel'),('East Lynne','East Lynne'),('Other','Other'),
 ('Strasburg','Strasburg'),('LoneJack','Strasburg'),('Freeman','Cass-Midway'),('Cleveland','Cass-Midway'),
-('Holden','EastLynne'),('Kingsville','Strasburg'),('Adrian','Archie'),('GunnCity','EastLynne'))
+('Holden','East Lynne'),('Kingsville','Strasburg'),('Adrian','Archie'),('Gunn City','East Lynne'))
+
 
 def fix_district(data, col='District'):
     '''
