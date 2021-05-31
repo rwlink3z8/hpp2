@@ -20,7 +20,7 @@ def extract_from_sql():
     '''
     mydb = db.create_engine('postgres+psycopg2://'+ cred.user + ':' + cred.passw + '@' + cred.host + \
                         ':' + str(cred.port) + '/' + cred.database , echo=False) 
-    data = pd.read_sql_table(name='kchouses1', mydb)
+    data = pd.read_sql_table(name='kchouses1', con=mydb)
     return data
 
 
