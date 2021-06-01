@@ -29,12 +29,8 @@ def get_columns_of_interest(data):
     this function drops the columns not of interest for this analysis
     Parameters
     ---------
-
     Returns
     ---------
-
-
-
     '''
     data_columns = ['City', 'Zip', 'Type', 'Sub', 'Bedrooms', 'Full Baths', 'Half Baths',
                 'Lot Size', 'Total Finished SF', 'Above Grade Finished SF', 'Yr Blt', 
@@ -49,15 +45,11 @@ def drop_important_nulls(data):
     '''
     this function drops properties with null values for the square footage
     some deals happen so fast the realtor never gets the listing service all the data
-
     Parameters
     ---------
     
     Returns
     ---------
-
-
-
     '''
     data = data.drop_duplicates()
     data = data.dropna(subset=['Total Finished SF'])
@@ -67,15 +59,11 @@ def drop_important_nulls(data):
 def fix_pool(data):
     '''
     this function 
-
     Parameters
     ---------
     
     Returns
     ---------
-
-
-
     '''
     data['Pool'] = data['Pool'].fillna('No Pool')
     return data
@@ -160,9 +148,6 @@ def construction_types(data):
     
     Returns
     ---------
-
-
-
     '''
     data['Construct'] = data['Construct'].map(dict(construction_set)).fillna('Other')
     return data
@@ -210,20 +195,17 @@ def fix_floor_plans(data):
     
     Returns
     ---------
-
-
-
     '''
     data['Floor Plan'] = data['Floor Plan'].map(dict(floor_plans)).fillna('Other')
     return data
 
-roof_types=(('Composition,Other','Composition'),('Composition,Metal','Metal'),('Other,Tile','Tile'),
-('Composition,WoodShingle','WoodShingle'),('Metal,Other','Metal'),('Other,WoodShingle','Other'),
-('Shake,WoodShingle','Shake'),('Composition,Concrete','Concrete'),('Metal,Tile','Metal'),
-('Composition,Shake','Composition'),('Concrete,Tile','Tile'),('Composition,Metal','Metal'),('Composition,Other','Composition'),
-('Metal,Other','Metal'),('Composition,WoodShingle''Other,Tile','Tile'),('Slate','Other'),('Shake,WoodShingle','WoodShingle'),
-('Composition,Shake','Composition'),('Metal,Tile','Metal'),('Composition','Composition'),('Concrete','Concrete'),
-('Metal','Metal'),('Other','Other'),('Tile','Tile'),('WoodShingle','WoodShingle'))
+roof_types=(('Composition, Other','Composition'),('Composition, Metal','Metal'),('Other, Tile','Tile'),
+('Composition, Wood Shingle','Wood Shingle'),('Metal, Other','Metal'),('Other, WoodShingle','Other'),
+('Shake, Wood Shingle','Shake'),('Composition, Concrete','Concrete'),('Metal, Tile','Metal'),
+('Composition, Shake','Composition'),('Concrete, Tile','Tile'),('Composition, Metal','Metal'),('Composition, Other','Composition'),
+('Metal, Other','Metal'), ('Other, Tile','Tile'),('Slate','Other'),('Shake, Wood Shingle','Wood Shingle'),
+('Composition, Shake','Composition'),('Metal, Tile','Metal'),('Composition','Composition'),('Concrete','Concrete'),
+('Metal','Metal'),('Other','Other'),('Tile','Tile'),('Wood Shingle','Wood Shingle'))
 
 def fix_roof_types(data):
     '''
@@ -234,9 +216,6 @@ def fix_roof_types(data):
     
     Returns
     ---------
-
-
-
     '''
     data['Roof'] = data['Roof'].map(dict(roof_types)).fillna('Other')
     return data
@@ -250,9 +229,6 @@ def fix_hoa_fees(data):
     
     Returns
     ---------
-
-
-
     '''
     data['HOA Fees'] = data['HOA Fees'].fillna(value=0)
     data['HOA Fees'] = data['HOA Fees'].apply(lambda x: int(x))
@@ -267,9 +243,6 @@ def fix_hoa_frequency(data):
     
     Returns
     ---------
-
-
-
     '''
     hoa_dict = {'None':0, 'Annually':1, 'Monthly':12, 'Quarterly':4, 'Semi-Annually':2}
     data['HOA Fee Frequency'] = data['HOA Fee Frequency'].fillna(value=0)
@@ -285,22 +258,19 @@ def hoa_cost(data):
     
     Returns
     ---------
-
-
-
     '''
     data['hoa_cost'] = data['HOA Fees'] * data['HOA Fee Frequency']
     return data
 
-arc_styles=(('A-Frame,CapeCod','A-Frame'),('A-Frame,Contemporary','A-Frame'),('A-Frame,Other','A-Frame'),
-('A-Frame,Traditional','A-Frame'),('AnteBellum','Victorian'),('AnteBellum,Traditional','Victorian'),
-('CapeCod,Colonial','CapeCod'),('CapeCod,Traditional','CapeCod'),('CapeCod,Tudor','CapeCod'),
-('Colonial,Contemporary','Colonial'),('Colonial,Traditional','Colonial'),('Colonial,Victorian','Victorian'),
-('Contemporary','Contemporary'),('Contemporary,Other','Contemporary'),('Contemporary,Spanish','Spanish'),
-('Contemporary,Traditional','Contemporary'),('Craftsman,Other','Craftsman'),('Craftsman,Victorian','Craftsman'),
-('French,Traditional','French'),('Other,Spanish','Spanish'),('Other,Traditional','Traditional'),
-('Other,Victorian','Victorian'),('Spanish,Traditional','Spanish'),('Traditional,Tudor','Tudor'),
-('Traditional,Victorian','Victorian'),('A-Frame','A-Frame'),('CapeCod','CapeCod'),('Colonial','Colonial'),
+arc_styles=(('A-Frame, Cape Cod','A-Frame'),('A-Frame, Contemporary','A-Frame'),('A-Frame, Other','A-Frame'),
+('A-Frame, Traditional','A-Frame'),('AnteBellum','Victorian'),('Ante Bellum, Traditional','Victorian'),
+('Cape Cod, Colonial','Cape Cod'),('Cape Cod, Traditional','Cape Cod'),('Cape Cod, Tudor','Cape Cod'),
+('Colonial, Contemporary','Colonial'),('Colonial, Traditional','Colonial'),('Colonial, Victorian','Victorian'),
+('Contemporary','Contemporary'),('Contemporary, Other','Contemporary'),('Contemporary, Spanish','Spanish'),
+('Contemporary, Traditional','Contemporary'),('Craftsman, Other','Craftsman'),('Craftsman, Victorian','Craftsman'),
+('French, Traditional','French'),('Other, Spanish','Spanish'),('Other, Traditional','Traditional'),
+('Other, Victorian','Victorian'),('Spanish, Traditional','Spanish'),('Traditional, Tudor','Tudor'),
+('Traditional, Victorian','Victorian'),('A-Frame','A-Frame'),('Cape Cod','Cape Cod'),('Colonial','Colonial'),
 ('Contemporary','Contemporary'),('Craftsman','Craftsman'),('French','French'),('Spanish','Spanish'),
 ('Traditional','Traditional'),('Tudor','Tudor'),('Victorian','Victorian'),('Other','Other'))
 
@@ -313,9 +283,6 @@ def fix_arc_style(data):
     
     Returns
     ---------
-
-
-
     '''
     data['Style'] = data['Style'].map(dict(arc_styles)).fillna('Other')
     return data
@@ -330,9 +297,6 @@ def fix_lees_summit(data):
     
     Returns
     ---------
-
-
-
     '''    
     data['District'] = data['District'].replace(to_replace="Lee's Summit", 
                                                   value='Lees Summit')
@@ -353,9 +317,6 @@ def transform_city1(data, col='City'):
     
     Returns
     ---------
-
-
-
     '''
     city_list = ['Garden City', 'Pleasant Hill', 'Strasburg', 'Archie', 'Belton',
                     'Harrisonville', 'Raymore', 'Drexel', 'Cleveland', 'Peculiar',
@@ -405,9 +366,6 @@ def fix_district(data, col='District'):
     
     Returns
     ---------
-
-
-
     '''
     data[col] = data[col].map(dict(schools)).fillna('Other')
     return data
@@ -423,9 +381,6 @@ def fix_dates(data):
     
     Returns
     ---------
-
-
-
     '''
 
     try:
@@ -461,15 +416,12 @@ def transform_target_func(data, price_col='Sale Price'):
     ----------
     Data - a dataframe object
     price_col - default column at the time of this writing is 'Sale Price' 
-
-
     Returns
     ----------
     todo - merge these two returns
     this function takes the yearly mean sales price and fits it to a yearly average
     which needs to be swapped to a variable or an input for production code then it normalizes 
     the price with a Box Cox transformation to fit the data to a normal distribution for cumulative distribution
-
     this function normalizes price to the current years mean price to adjust for inflation
     y_adjusted price = ((sale price)*(current year mean price)) / (sale year mean price)
     find lambda for box cox transformation and then apply boxcox tranformation with lambda
@@ -499,8 +451,6 @@ def lot_transformation_function(data):
     the larger lots were listed in acres but often time the ones smaller than an acre were listed in square
     feet
     I do not know of a better way to do this and I am always open to advice
-
-
     '''
     # fix lot size - remove outliers greater than 40 acres, larger than 1500 convert to acres
     data['Lot Size'] = data['Lot Size'].fillna(.2)
@@ -522,4 +472,3 @@ def rename_columns(data):
                                'Fireplace #':'num_of_fireplaces','District':'district','Pool':'pool',
                                'Construct':'construction','Roof':'roof'})
     return data
-
