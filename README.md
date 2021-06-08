@@ -10,7 +10,7 @@
 3. Data transformation, modeling and storage
 4. ToDo - add building permits from county from weekly pdf's 
 5. ToDo - days on market in my dataset add to model
-6. TODO - Client side work to present models in a readable, practical way
+6. App - properly configure Makefile, Dockerfile, and docker-compose
 
 ## 4 and 5 are probably what's needed to actually make valid predictions
 
