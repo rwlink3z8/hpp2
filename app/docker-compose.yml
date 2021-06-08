@@ -1,8 +1,7 @@
 version: "3.8"
-
 services:
-    website:
-        image: flask-site-100:latest
-        command: python app.py 0.0.0.0:5000
-        ports:
-            - "5000:5000"
+  web:
+    image: flask-website:latest
+    build: .
+    ports:
+      - "5000:5000"
