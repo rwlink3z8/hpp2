@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Cass County Mo Home Price Predictor</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='js/app.js')}}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" type="text/css">
+    </head>
+    <body>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href=https://github.com/rwlink3z8/home_price_predictor/blob/master/README.md>About</a></li>
+            </ul>
+        </div>
+    <div class="img"></div>
+    <form class="form">
+        <h2>Cass County Home Price Predictor</h2>
+        <h2>Square Feet</h2>
+    <input class="sqft" type="number" id="uiSqft" class="floatlabel" name="sqft" value="1000"></form>
+        <div>
+            <form class="form">
+                {% include 'bedrooms.html' %}
+            </form>
+        </div>
+    <form class="form">
+                {% include 'bathrooms.html' %}
+    </form>
+    <div>
+        <form class="form">
+            {% include 'garage.html' %}
+        </form>
+    </div>
+    <form class="form">
+            <h2>Lot Size (in Acres -> 43560 sq ft is 1 acre)</h2>
+        <input class="lot_size" type="number" id="uiAcres" class="floatlabel" name="acres" value="1">
+            <h2>Year built (this year for remodel)</h2>
+        <input class="yr_built" type="number" id="uiYR" class="floatlabel" name="yr" value="2020">
+            <h2>City</h2>
+        <div>
+                {% include 'city.html' %}
+    </div>
+            <h2>School District</h2>
+        <div>
+            {% include 'district.html' %}
+    </div>
+        <button class="submit" onclick="onClickedEstimatePrice()" type="button">Estimate Price</button>
+        <div id="uiEstimatedPrice" class="result">	<h2></h2> </div>
+    </body>
+</html>
