@@ -3,5 +3,6 @@ services:
   web:
     image: flask-website:latest
     build: .
+    command: python app/app.py
     ports:
       - "5000:5000"
