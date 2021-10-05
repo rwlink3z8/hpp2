@@ -1,25 +1,13 @@
 from flask import Flask, request, jsonify
-from flask import render_template
-from flask_sqlalchemy import SQLAlchemy
+from flask import render_template, flash, redirect
 import json
 import util
 
-
-app = Flask(__name__, template_folder='templates')
-
-db = SQLAlchemy(app)
-
+app = Flask(__name__, template_folder='templates', static_folder='static')
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     return render_template("app.html")
-
-
-@app.route("/get_city_names", methods=["GET"])
-def get_location_names():
-    response = jsonify({"locations": util.get_location_names()})
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
 
 
 @app.route("/predict_home_price", methods=["GET", "POST"])
@@ -45,5 +33,5 @@ def predict_home_price():
 
 
 if __name__ == "__main__":
-    util.load_saved_artifacts()
-    app.run()
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)
