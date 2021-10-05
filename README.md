@@ -5,7 +5,7 @@
 
 
 ## Table of Contents
-1. Current and Future Architechture
+1. Deployment
 2. Data collection and initial storage
 3. Data transformation, modeling and storage
 4. ToDo - add building permits from county from weekly pdf's 
@@ -13,6 +13,10 @@
 6. App - properly configure Makefile, Dockerfile, and docker-compose, add app/data folder and those files
 
 ## 4 and 5 are probably what's needed to actually make valid predictions
+
+## Deployment
+
+Currently you would need to pickle the model, then run docker build . and docker-compose up, from there it would be available on port 5000
 
 ## Data Collection and initial storage
 Making the switch from webscraping to API's has allowed me to obtain real estate listings for over 308,000 single-family homes sold in the KC metro area over the last 20 years for three different counties. This represents a 100 fold increase in the data and current work is to continue to scale this project.
