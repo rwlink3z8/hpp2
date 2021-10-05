@@ -5,9 +5,8 @@ import pandas as pd
 from sklearn.preprocessing import PowerTransformer
 from scipy.special import inv_boxcox
 
-__model = None
-__city = None
-__data_columns = None
+with open('app/pickle_mod.pickle', 'rb') as f:
+    __model = pickle.load(f)
 
 
 """
@@ -29,22 +28,6 @@ def get_estimated_price(sqft, lot_size, bedrooms, bathrooms, yr_built, location)
     value = '${:,.0f}'.format(val)
     return value
 """
-
-dat_col = {"data_columns": ["city", "district", "total_sqft", "lot_size", "bedrooms", "bathrooms", "yr_built", "garage_size"]}
-
-def load_saved_artifacts():
-    print("loading saved artifacts...start")
-    global __data_columns
-    __data_columns = dat_col["data_columns"]
-
-    global __model
-    if __model is None:
-        with open("/home/robert/cc2/app/data/stacked_pipe20210605.pickle", "rb") as f:
-           __model = pickle.load(f)
-  
-    
-    print("loading saved artifacts...done")
-
 
 # not in use yet add postgres, docker, docker-compose first
 def _get_lambda_from_power_transform(data):
@@ -69,42 +52,15 @@ def predict_price(city, district, total_sqft, lot_size, bedrooms, bathrooms, yr_
     lambda was found to be 0.20522 - todo don't hard code this
     """
     lam = 0.205216
-    x = [city, district, total_sqft, lot_size, bedrooms, bathrooms, yr_built, garage]
-    cols = __data_columns
-    data = pd.DataFrame(data=[x], columns=cols)
+    x = [[city, district, total_sqft, lot_size, bedrooms, bathrooms, yr_built, garage]]
+    cols = ['city', 'district', 'total_sqft', 'lot_size', 'bedrooms', 'bathrooms', 'yr_built', 'garage']
+    data = pd.DataFrame(data=x, columns=cols)
     prediction = inv_boxcox(__model.predict(data)[0], lam)
     return f"${round(prediction)}"
 
 
-def get_location_names():
-    
-    global __city
-    if __city is None:
-        return [
-            "Garden City",
-            "Pleasant Hill",
-            "Strasburg",
-            "Archie",
-            "Belton",
-            "Harrisonville",
-            "Raymore",
-            "Drexel",
-            "Cleveland",
-            "Peculiar",
-            "East Lynne",
-            "Freeman",
-            "Creighton",
-            "Lake Winnebago",
-            "Lees Summit",
-            "Greenwood",
-            "Loch Lloyd"]
-
-
-def get_data_columns():
-    return __data_columns
 
 
 if __name__ == "__main__":
-    load_saved_artifacts()
-    print(predict_price("Belton", 3000, 5, 4, 3, 2021))
-    print(predict_price("Raymore", 3000, 5, 4, 3, 2021))
+    print(predict_price("Belton", "Raymore-Peculiar", 3000, 5, 4, 3, 2021, 2))
+    print(predict_price("Raymore", "Raymore-Peculiar", 3000, 5, 4, 3, 2021, 2))
