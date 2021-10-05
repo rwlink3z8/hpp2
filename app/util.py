@@ -1,11 +1,12 @@
 import pickle
 import json
+
 # import numpy as np
 import pandas as pd
 from sklearn.preprocessing import PowerTransformer
 from scipy.special import inv_boxcox
 
-with open('app/pickle_mod.pickle', 'rb') as f:
+with open("app/pickle_mod.pickle", "rb") as f:
     __model = pickle.load(f)
 
 
@@ -31,7 +32,7 @@ def get_estimated_price(sqft, lot_size, bedrooms, bathrooms, yr_built, location)
 
 # not in use yet add postgres, docker, docker-compose first
 def _get_lambda_from_power_transform(data):
-    '''
+    """
     this helper function takes the yearly adjusted sale price and gets lambda for the price prediction
     todo ---- look at statsmodels for a cleaner method
     parameters
@@ -40,25 +41,34 @@ def _get_lambda_from_power_transform(data):
     returns
     ---------
     fitted lambda from either a yeo-johnson or box cox transformation
-    '''
-    pt = PowerTransformer(method='yeo-johnson')
-    pt.fit(data[['y_adjusted_price']])
+    """
+    pt = PowerTransformer(method="yeo-johnson")
+    pt.fit(data[["y_adjusted_price"]])
     return pt.lambdas_[0]
 
 
-def predict_price(city, district, total_sqft, lot_size, bedrooms, bathrooms, yr_built, garage):
+def predict_price(
+    city, district, total_sqft, lot_size, bedrooms, bathrooms, yr_built, garage
+):
     """
     price prediction
     lambda was found to be 0.20522 - todo don't hard code this
     """
     lam = 0.205216
     x = [[city, district, total_sqft, lot_size, bedrooms, bathrooms, yr_built, garage]]
-    cols = ['city', 'district', 'total_sqft', 'lot_size', 'bedrooms', 'bathrooms', 'yr_built', 'garage']
+    cols = [
+        "city",
+        "district",
+        "total_sqft",
+        "lot_size",
+        "bedrooms",
+        "bathrooms",
+        "yr_built",
+        "garage",
+    ]
     data = pd.DataFrame(data=x, columns=cols)
     prediction = inv_boxcox(__model.predict(data)[0], lam)
     return f"${round(prediction)}"
-
-
 
 
 if __name__ == "__main__":
