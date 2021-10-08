@@ -16,7 +16,7 @@
 
 ## Deployment
 
-Currently you would need to pickle the model, then run docker build . and docker-compose up, from there it would be available on port 5000
+Todo
 
 ## Data Collection and initial storage
 Making the switch from webscraping to API's has allowed me to obtain real estate listings for over 308,000 single-family homes sold in the KC metro area over the last 20 years for three different counties. This represents a 100 fold increase in the data and current work is to continue to scale this project.
