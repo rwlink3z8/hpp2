@@ -6,31 +6,15 @@ import pandas as pd
 from sklearn.preprocessing import PowerTransformer
 from scipy.special import inv_boxcox
 
+# to run locally uncomment out
+# with open("/path/to/file/pickle_mod.pickle", "rb") as f:
+# to run in docker use the following
 with open("app/pickle_mod.pickle", "rb") as f:
     __model = pickle.load(f)
 
 
-"""
-def get_estimated_price(sqft, lot_size, bedrooms, bathrooms, yr_built, location):
-    try:
-        loc_index = __data_columns.index(location)
-    except:
-        loc_index = -1
-    x = np.zeros(len(__data_columns))
-    x[0] = sqft
-    x[1] = lot_size
-    x[2] = bedrooms
-    x[3] = bathrooms
-    x[4] = yr_built
-    if loc_index>=0:
-        x[loc_index] = 1
-    prediction = np.exp(__model.predict([x])[0])
-    val = np.ndarray.item(prediction)
-    value = '${:,.0f}'.format(val)
-    return value
-"""
 
-# not in use yet add postgres, docker, docker-compose first
+# not in use yet
 def _get_lambda_from_power_transform(data):
     """
     this helper function takes the yearly adjusted sale price and gets lambda for the price prediction
