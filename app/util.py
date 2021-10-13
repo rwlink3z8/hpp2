@@ -9,7 +9,7 @@ from scipy.special import inv_boxcox
 # to run locally uncomment out
 # with open("/path/to/file/pickle_mod.pickle", "rb") as f:
 # to run in docker use the following
-with open("app/pickle_mod.pickle", "rb") as f:
+with open("pickle_mod.pickle", "rb") as f:
     __model = pickle.load(f)
 
 
