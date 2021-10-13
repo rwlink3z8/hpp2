@@ -16,7 +16,11 @@
 
 ## Deployment
 
-Todo
+you would need to pickle the model, that file is not in this repo
+then from the app folder run `docker build -t [TAG]` to build the image.
+Next, run `docker-compose up` to run the container and navigate to port 5000
+
+This is now containerized but has not been updated on the EC2 instance yet
 
 ## Data Collection and initial storage
 Making the switch from webscraping to API's has allowed me to obtain real estate listings for over 308,000 single-family homes sold in the KC metro area over the last 20 years for three different counties. This represents a 100 fold increase in the data and current work is to continue to scale this project.
